@@ -25,7 +25,8 @@ public class TransactionHelper {
 	@Scheduled(fixedDelay = 1)
 	public void calculateStatsFromQueue() {
 		if (tranactionsQueue.isEmpty()) {
-			transactionsStats.entrySet().forEach(calculateStats());
+			if (transactionsStats.size() != 0)
+				transactionsStats.entrySet().forEach(calculateStats());
 		} else {
 			while (!tranactionsQueue.isEmpty()) {
 				Transaction transaction = tranactionsQueue.poll();
