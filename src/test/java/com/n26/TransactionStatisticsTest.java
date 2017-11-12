@@ -58,6 +58,10 @@ public class TransactionStatisticsTest {
 		MockHttpServletResponse response = result.getResponse();
 
 		if (HttpStatus.CREATED.value() == response.getStatus()) {
+			
+			//Transaction is async so taking some time to calculate stats
+			Thread.sleep(1000);
+			
 			builder = MockMvcRequestBuilders.get("/statistics");
 
 			result = mockMvc.perform(builder).andReturn();
